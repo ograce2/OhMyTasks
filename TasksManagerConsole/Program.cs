@@ -101,23 +101,3 @@ static void DeleteTask(TaskManager manager)
     }
 }
 
-static void DeleteTask(TaskManager manager)
-{
-    ListTasks(manager);
-    Console.Write("Enter task number to delete: ");
-    if (int.TryParse(Console.ReadLine(), out int taskNumber))
-    {
-        if (manager.DeleteTask(taskNumber - 1))
-        {
-            Console.WriteLine("\nTask deleted successfully!");
-        }
-        else
-        {
-            Console.WriteLine("Invalid task number.");
-        }
-    }
-    else
-    {
-        Console.WriteLine("Invalid task number.");
-    }
-}
