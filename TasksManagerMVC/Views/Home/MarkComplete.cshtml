@@ -1,0 +1,30 @@
+@model List<TasksManagerMVC.Models.TaskItem>
+@{
+    ViewData["Title"] = "Mark Task Complete";
+}
+
+<h2>Mark Task Complete</h2>
+
+@if (!Model.Any())
+{
+    <p>No tasks available to mark as complete.</p>
+}
+else
+{
+    <div class="list-group">
+        @foreach (var task in Model.Where(t => !t.IsCompleted))
+        {
+            <form asp-action="MarkComplete" method="post" class="mb-2">
+                <input type="hidden" name="id" value="@task.Id" />
+                <div class="d-flex">
+                    <span class="flex-grow-1">@task.Description</span>
+                    <button type="submit" class="btn btn-success">Mark Complete</button>
+                </div>
+            </form>
+        }
+    </div>
+}
+
+<div class="mt-3">
+    <a asp-action="Index" class="btn btn-secondary">Back to Menu</a>
+</div>
