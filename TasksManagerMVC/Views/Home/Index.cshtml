@@ -1,0 +1,13 @@
+@{
+    ViewData["Title"] = "Task Manager";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Task Manager</h1>
+    <div class="list-group mt-4">
+        <a asp-action="Add" class="list-group-item list-group-item-action">1. Add new task</a>
+        <a asp-action="List" class="list-group-item list-group-item-action">2. List all tasks</a>
+        <a asp-action="MarkComplete" class="list-group-item list-group-item-action">3. Mark task as complete</a>
+        <a asp-action="Delete" class="list-group-item list-group-item-action">4. Delete task</a>
+    </div>
+</div>
