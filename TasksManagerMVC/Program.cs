@@ -2,7 +2,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddSingleton<TasksManagerMVC.Services.TaskService>();
+builder.Services.AddDbContext<TasksManagerMVC.Data.TasksDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped<TasksManagerMVC.Services.TaskService>();
 
 var app = builder.Build();
 
