@@ -17,7 +17,7 @@ else
             <form asp-action="ConfirmDelete" method="post" class="mb-2">
                 <input type="hidden" name="id" value="@task.Id" />
                 <div class="d-flex">
-                    <span class="flex-grow-1">@(task.IsCompleted ? "[X]" : "[ ]") @task.Description</span>
+                    <span class="flex-grow-1">@(task.IsCompleted==1 ? "[X]" : "[ ]") @task.Description</span>
                     <button type="submit" class="btn btn-danger">Delete</button>
                 </div>
             </form>

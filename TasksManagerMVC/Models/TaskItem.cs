@@ -15,6 +15,6 @@ namespace TasksManagerMVC.Models
         public string Description { get; set; } = string.Empty;
 
         [Column("completed")]
-        public bool IsCompleted { get; set; }
+        public int IsCompleted { get; set; }
     }
 }

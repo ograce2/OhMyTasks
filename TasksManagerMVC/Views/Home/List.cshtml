@@ -15,7 +15,7 @@ else
         @foreach (var task in Model)
         {
             <li class="list-group-item">
-                @(task.IsCompleted ? "[X]" : "[ ]") @task.Description
+                @(task.IsCompleted==1 ? "[X]" : "[ ]") @task.Description
             </li>
         }
     </ul>

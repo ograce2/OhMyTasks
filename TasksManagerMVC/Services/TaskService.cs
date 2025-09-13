@@ -23,7 +23,7 @@ namespace TasksManagerMVC.Services
             var task = new TaskItem
             {
                 Description = description,
-                IsCompleted = false
+                IsCompleted = 0
             };
             _context.Tasks.Add(task);
             _context.SaveChanges();
@@ -39,7 +39,8 @@ namespace TasksManagerMVC.Services
             var task = GetTaskById(id);
             if (task != null)
             {
-                task.IsCompleted = true;
+                // task.IsCompleted = true;
+                task.IsCompleted = 1;
                 _context.SaveChanges();
             }
         }
