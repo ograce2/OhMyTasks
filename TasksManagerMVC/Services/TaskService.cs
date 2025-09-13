@@ -1,30 +1,37 @@
+using Microsoft.EntityFrameworkCore;
+using TasksManagerMVC.Data;
 using TasksManagerMVC.Models;
 
 namespace TasksManagerMVC.Services
 {
     public class TaskService
     {
-        private readonly List<TaskItem> _tasks = new();
-        private int _nextId = 1;
+        private readonly TasksDbContext _context;
+
+        public TaskService(TasksDbContext context)
+        {
+            _context = context;
+        }
 
         public List<TaskItem> GetAllTasks()
         {
-            return _tasks;
+            return _context.Tasks.ToList();
         }
 
         public void AddTask(string description)
         {
-            _tasks.Add(new TaskItem
+            var task = new TaskItem
             {
-                Id = _nextId++,
                 Description = description,
-                IsCompleted = false
-            });
+                IsCompleted = 0
+            };
+            _context.Tasks.Add(task);
+            _context.SaveChanges();
         }
 
         public TaskItem? GetTaskById(int id)
         {
-            return _tasks.FirstOrDefault(t => t.Id == id);
+            return _context.Tasks.FirstOrDefault(t => t.Id == id);
         }
 
         public void MarkTaskComplete(int id)
@@ -32,7 +39,9 @@ namespace TasksManagerMVC.Services
             var task = GetTaskById(id);
             if (task != null)
             {
-                task.IsCompleted = true;
+                // task.IsCompleted = true;
+                task.IsCompleted = 1;
+                _context.SaveChanges();
             }
         }
 
@@ -41,7 +50,9 @@ namespace TasksManagerMVC.Services
             var task = GetTaskById(id);
             if (task != null)
             {
-                return _tasks.Remove(task);
+                _context.Tasks.Remove(task);
+                _context.SaveChanges();
+                return true;
             }
             return false;
         }
